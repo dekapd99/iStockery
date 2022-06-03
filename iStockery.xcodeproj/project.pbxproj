@@ -11,6 +11,9 @@
 		ABEAC229284A492F00C50FD4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABEAC228284A492F00C50FD4 /* ContentView.swift */; };
 		ABEAC22B284A493000C50FD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABEAC22A284A493000C50FD4 /* Assets.xcassets */; };
 		ABEAC22E284A493000C50FD4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABEAC22D284A493000C50FD4 /* Preview Assets.xcassets */; };
+		ABEAC235284A49BA00C50FD4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ABEAC234284A49BA00C50FD4 /* GoogleService-Info.plist */; };
+		ABEAC238284A4B7700C50FD4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = ABEAC237284A4B7700C50FD4 /* FirebaseFirestore */; };
+		ABEAC23A284A4B7700C50FD4 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = ABEAC239284A4B7700C50FD4 /* FirebaseFirestoreSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,8 @@
 		ABEAC228284A492F00C50FD4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		ABEAC22A284A493000C50FD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ABEAC22D284A493000C50FD4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		ABEAC234284A49BA00C50FD4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		ABEAC23B284A4EBB00C50FD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +31,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ABEAC238284A4B7700C50FD4 /* FirebaseFirestore in Frameworks */,
+				ABEAC23A284A4B7700C50FD4 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +58,8 @@
 		ABEAC225284A492F00C50FD4 /* iStockery */ = {
 			isa = PBXGroup;
 			children = (
+				ABEAC23B284A4EBB00C50FD4 /* Info.plist */,
+				ABEAC234284A49BA00C50FD4 /* GoogleService-Info.plist */,
 				ABEAC226284A492F00C50FD4 /* iStockeryApp.swift */,
 				ABEAC228284A492F00C50FD4 /* ContentView.swift */,
 				ABEAC22A284A493000C50FD4 /* Assets.xcassets */,
@@ -83,6 +92,10 @@
 			dependencies = (
 			);
 			name = iStockery;
+			packageProductDependencies = (
+				ABEAC237284A4B7700C50FD4 /* FirebaseFirestore */,
+				ABEAC239284A4B7700C50FD4 /* FirebaseFirestoreSwift */,
+			);
 			productName = iStockery;
 			productReference = ABEAC223284A492F00C50FD4 /* iStockery.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +124,9 @@
 				Base,
 			);
 			mainGroup = ABEAC21A284A492F00C50FD4;
+			packageReferences = (
+				ABEAC236284A4B7700C50FD4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = ABEAC224284A492F00C50FD4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,6 +143,7 @@
 			files = (
 				ABEAC22E284A493000C50FD4 /* Preview Assets.xcassets in Resources */,
 				ABEAC22B284A493000C50FD4 /* Assets.xcassets in Resources */,
+				ABEAC235284A49BA00C50FD4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +287,7 @@
 				DEVELOPMENT_TEAM = BZ9S44ZL2V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iStockery/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +317,7 @@
 				DEVELOPMENT_TEAM = BZ9S44ZL2V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iStockery/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -339,6 +358,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		ABEAC236284A4B7700C50FD4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		ABEAC237284A4B7700C50FD4 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ABEAC236284A4B7700C50FD4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		ABEAC239284A4B7700C50FD4 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ABEAC236284A4B7700C50FD4 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ABEAC21B284A492F00C50FD4 /* Project object */;
 }
