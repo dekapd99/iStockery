@@ -33,9 +33,9 @@ git clone https://github.com/dekapd99/iStockery.git
 6. Klik icon iOS Apple pada halaman project iStockery. Dan pastikan untuk masukkan nama pada Bundle ID contohnya seperti ini ".com.deka.iStockery".
 7. Setelah itu, Download Config File yang diberikan oleh Firebase dan klik Next. Setelah itu, Copy Dependencies / Package URL yang diberikan.
 8. Buka Xcode, klik General ubah dan sesuaikan nama Bundle Identifier seperti di Project Firebase.
-9. Klik File > Add Packages. Paste URL Dependencies / Package pada kolom Search. Ubah Depedency Rule menjadi Branch - master dan klik Add Package
-10. Drag & Drop Config File yang diberikan oleh Firebase ke dalam Project Navigation.
-11. Ikuti installasi step pada halaman [ini] (https://firebase.google.com/docs/cli?authuser=0#mac-linux-npm).
+9. Klik File > Add Packages. Paste URL Dependencies / Package pada kolom Search. Ubah Depedency Rule menjadi Branch - master dan klik Add Package.
+10. Drag & Drop Config File yang diberikan oleh Firebase ke dalam Project Navigation. 
+11. Ikuti installasi step pada halaman [ini] (https://firebase.google.com/docs/cli?authuser=0#mac-linux-npm). Salah satunya GoogleService-Info.plist.
 12. Lakukan Login dengan Firebase, Inisialisasi (https://firebase.google.com/docs/emulator-suite/install_and_configure?hl=en&authuser=0), Setting Ports, dan Cek Project List yang ada
 ```bash
 firebase login
