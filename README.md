@@ -26,8 +26,8 @@ Untuk menggunakan repositori ini, ikutilah petunjuk penggunaan berikut dan pasti
 git clone https://github.com/dekapd99/iStockery.git
 ```
 
-2. Jika mendownload .zip, Extract zip tersebut dan Jalankan file dengan ekstensi .html menggunakan browser atau live server.
-3. Jika sudah silahkan buka Project di Xcode, klik iStockery (paling atas) di Project Navigator. Cari TARGETS di panel iStockery dan klik Info.
+2. Jika mendownload .zip, Extract zip tersebut dan buka Project di Xcode.
+3. Klik iStockery (paling atas) di Project Navigator. Cari TARGETS di panel iStockery dan klik Info.
 4. Buka Custom iOS Public Target Properties dan tambahkan Key baru. Ketik App Transport Security Settings untuk mengintegrasikan App ini dengan Networking Feature di Internet (HTTPS / URL) biasanya berhubungan dengan API dan Cloud.
 5. Buka website Firebase dan lakukan Login, kemudian klik Go To Console dan Add Projects. Pastikan namanya adalah "iStockery" dan matikan Google Analytic karena tidak diperlukan.
 6. Klik icon iOS Apple pada halaman project iStockery. Dan pastikan untuk masukkan nama pada Bundle ID contohnya seperti ini ".com.deka.iStockery".
