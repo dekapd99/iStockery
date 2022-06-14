@@ -6,15 +6,17 @@
 //
 
 import Foundation
-import FirebaseFirestoreSwift // import firestore
+import FirebaseFirestoreSwift // Mengaktifkan library Firebase Firestore untuk Swift
 
+// Deklarasi Attribute dari Firestore Collection & Dari Aplikasi
 struct StockItem: Identifiable, Codable {
     
-    // special property wrapper
-    @DocumentID var id: String? // setiap kali id bernilai nill firebase akan generate unique standar document id buat kita
-    @ServerTimestamp var createdAt: Date? // firebase akan inject data setiap data sync dengan server
-    @ServerTimestamp var updatedAt: Date? // firebase akan inject data setiap data sync dengan server
+    // Deklarasi Atribute Baru untuk Aplikasi
+    @DocumentID var id: String? // Generate Unique ID ketika tidak tidak memiliki ID
+    @ServerTimestamp var createdAt: Date? // Inject Data ke Server setiap ada Data Baru
+    @ServerTimestamp var updatedAt: Date? // Inject Data ke Server setiap ada Data Baru
     
+    // Deklarasi Attribute yang digunakan dari Firestore Collection
     let name: String
     let quantity: Int
 }

@@ -5,27 +5,28 @@
 //  Created by Deka Primatio on 03/06/22.
 //
 
-import Firebase // mengaktifkan library Firebase
 import SwiftUI
-import UIKit // mengaktifkan library UIKit
+import UIKit    // mengaktifkan library UIKit
+import Firebase // mengaktifkan library Firebase
 
-// Collect App Delegate Class
+// AppDelegate: Konfirgurasi Firestore
 class AppDelegate: NSObject, UIApplicationDelegate{
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
-        FirebaseApp.configure() // konfigure firebase app (breakpoint)
+        FirebaseApp.configure() // Mengaktifkan Konfigurasi FirebaseApp
         
-        // konek local Firebase environment ketika target simulator iOS
+        // Mengakses Konfigurasi Firestore Settings
         let settings = Firestore.firestore().settings
         
-        // Conditional Fragment
+        // Conditional Fragment: Konfigurasi Firestore Settings
         #if targetEnvironment(simulator)
-        settings.host = "localhost:9000" // targetkan portnya
-        settings.isPersistenceEnabled = false // firestore support offline storing sistem tapi karena kita make ini secara lokal maka storing data terjadi hanya ketika kita online saja sehingga dibuat False
+        settings.host = "localhost:9000" // sesuaikan dengan port yang digunakan di Firebase CLI
+        // PersistenceEnabled: Firestore support offline storing sistem
+        settings.isPersistenceEnabled = false // False karena Storing Data terjadi ketika Online saja
         settings.isSSLEnabled = false // karena kita konek ke https
         #endif
         
-        // konfigurasi firestore dengan menggunakan setting yang baru yaitu fragment diatas
+        // Simpan Konfigurasi Firestore Settings yang Baru
         Firestore.firestore().settings = settings
         
         return true

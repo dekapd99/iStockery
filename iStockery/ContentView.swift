@@ -9,100 +9,94 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift // import firestore
 import SwiftUI
 
+// Tampilan Halaman Beranda
 struct ContentView: View {
-    
-    // get data dari entitas inventories dengan default sort createdAt dan descending button = aktif
+    // Get data dari entitas inventories
+    // Default Sort Terbaru (createdAt | descending)
+    // Sesuaikan dengan Line 16 di StockListViewModel.swift
     @FirestoreQuery(collectionPath: "inventories", predicates: [.order(by: SortType.createdAt.rawValue, descending: true)]) private var items: [StockItem]
     
-    // konek dengan StockListViewModel yang berisikan fungsi CRUD
+    // StateObject
     @StateObject private var vm = StockListViewModel()
-
     
     var body: some View {
         VStack{
-            
-            // menampilkan error ketika data type tidak dalam format yang sesuai pada StockItem.swift
+            // Tampilkan error jika tipe data tidak sesuai pada StockItem.swift
             if let error = $items.error {
                 Text(error.localizedDescription)
             }
             
-            // menampilkan data kalo ada stoknya
+            // Tampilkan Item ketika ada Stoknya (Stok Item > 0)
             if items.count > 0{
-                // declare item name di closure parameter
-                List{
-                    sortBySectionView
-                    listItemsSectionView
+                // Parameter Enclosure: untuk view List
+                List{ // List berisikan Section & Hasil Sort Section
+                    listItemsSectionView    // Tampilkan Section Item Satuan
+                    sortBySectionView       // Sorted Section Item
                 }
                 .listStyle(.insetGrouped)
             }
         }
-        
-        // Toggle Edit Mode
-        .toolbar{
+        .toolbar{ // Tombol Toggle Edit Mode
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button("+"){ vm.addItem() }.font(.title) // tombol add
+                Button("+"){ vm.addItem() }.font(.title)
             }
-            
             ToolbarItem(placement: .navigationBarLeading) { EditButton() }
         }
-        // setiap klik sort by akan menampilkan perubahan sort itemnya
+        // Setiap klik "Sort By" -> Tampilkan Hasil Sort-nya
         .onChange(of: vm.selectedSortType) { _ in onSortTypeChanged()}
         .onChange(of: vm.isDescending) { _ in onSortTypeChanged()}
-        .navigationTitle("Stock of Product")
+        .navigationTitle("Stok Barang")
     }
     
+    // Tampilan Section Item
     private var listItemsSectionView: some View {
         Section {
+            // ForEach -> Untuk Setiap Item
             ForEach(items) { item in
                 VStack {
-                    // getter dan setter method
-                    // perubahan pada nama
-                    TextField("Name", text: Binding<String>(
-                        // get data name
-                        get: { item.name },
-                        // invoke ke dalam fungsi menghentikan update secara realtime firebase sampai "dipencet enter"
+                    // Forms: Nama Barang (Getter & Setter)
+                    TextField("Nama Barang", text: Binding<String>(
+                        get: { item.name }, // Getter Nama Item dari Server
+                        // Setter untuk Stop Update Secara Realtime Sampai Tombol "Enter" ditekan
                         set: { vm.editedName = $0 }),
                               onEditingChanged: { vm.onEditingItemNameChanged(item: item, isEditing: $0)}
                     )
-                    .disableAutocorrection(true)
+                    .disableAutocorrection(true) // No Auto Correct
                     .font(.headline)
                     
-                    // perubahan pada stock quantity
-                    Stepper("Quantity: \(item.quantity)",
+                    // Forms: Jumlah Barang (Getter & Setter)
+                    Stepper("Jumlah: \(item.quantity)",
                         value: Binding<Int>(
-                            // get data quantity
-                            get: { item.quantity },
-                            // invoke ke dalam fungsi
+                            get: { item.quantity }, // Getter Quantity Item dari Server
+                            // Setter untuk Update jika ada Perubahan ke Server
                             set: { vm.updateItem(item, data: ["quantity": $0]) }),
                         in: 0...1000)
                 }
             }
-            
-            // delete item dari indexset
+            // Tombol Delete dengan Fungsi-nya dari ViewModel
             .onDelete { vm.onDelete(items: items, indexset: $0) }
         }
     }
     
+    // Tampilan Sort By
     private var sortBySectionView: some View {
-        // section sendiri untuk tombol sort by
         Section {
+            // Group untuk Tombol Sort By
             DisclosureGroup("Sort by") {
-                // invoke ke dalam fungsi sort
+                // Sort Item sesuai dengan Tipe Sort yang dipilih
                 Picker("Sort by", selection: $vm.selectedSortType) {
-                    // sort dari setiap item yang ada
                     ForEach(SortType.allCases, id: \.rawValue) { sortType in
                         Text(sortType.text).tag(sortType)
                     }
-                }.pickerStyle(.segmented) // segmented control style
-                
-                // descending toggle
+                }.pickerStyle(.segmented)
+                // Tombol Descending dengan Fungsi-nya dari ViewModel
                 Toggle("Is Descending", isOn: $vm.isDescending)
             }
         }
     }
     
-    // pergantian fungsi sort ascending / descending
-    private func onSortTypeChanged(){
+    // Perubahan pergantian tipe Sort terhadap Items
+    private func onSortTypeChanged() {
         $items.predicates = vm.predicates
     }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Data Attribute dari Collection Firestore yang digunakan
 enum SortType: String, CaseIterable {
     
     case createdAt
@@ -14,6 +15,7 @@ enum SortType: String, CaseIterable {
     case name
     case quantity
     
+    // Return Collection yang sudah tersimpan di Firestore ke Aplikasi
     var text: String {
         switch self {
         case .createdAt: return "Created At"

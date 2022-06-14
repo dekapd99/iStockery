@@ -5,61 +5,55 @@
 //  Created by Deka Primatio on 03/06/22.
 //
 
-import FirebaseFirestore
 import SwiftUI
-import FirebaseFirestoreSwift
+import FirebaseFirestore        // Mengaktifkan library Firebase Firestore
+import FirebaseFirestoreSwift   // Mengaktifkan library Firebase Firestore untuk Swift
 
-// Refactor fungsi CRUD yang awalnya dari ContentView
+// Berisikan Fungsi CRUD
 class StockListViewModel: ObservableObject{
     
-    // get collection data dari nama entitas di Firebase
-    private let db = Firestore.firestore().collection("inventories")
+    // Get collection data dari nama entitas "inventories" di Firebase
+    private let db = Firestore.firestore().collection("inventories") // Bisa diganti sesuai keinginan
     
-    @Published var selectedSortType = SortType.createdAt // default value ketika awal membuka sort by
-    @Published var isDescending = true // default value Descending selalu aktif
-    @Published var editedName = "" // simpan edited name yang telah diganti
+    @Published var selectedSortType = SortType.createdAt // Default: Sort by createdAt
+    @Published var isDescending = true // Default: Sort secara Descending
+    @Published var editedName = "" // Default: Edit Nama Item
     
-    // komputasi predicates untuk sorting
+    // Komputasi Predicate Sorting
     var predicates: [QueryPredicate] { [.order(by: selectedSortType.rawValue, descending: isDescending)] }
     
-    // fungsi tambah item baru
+    // Fungsi Menambahkan Item Baru
     func addItem(){
-        
-        // default item baru
-        let item = StockItem(name: "New Item", quantity: 1)
-        _ = try? db.addDocument(from: item) // generate oleh server
+        let item = StockItem(name: "New Item", quantity: 1) // Default: Form Item Baru
+        _ = try? db.addDocument(from: item) // Tambahkan Item Baru ke Database Server
     }
     
-    // fungsi update data
+    // Fungsi Update Item
     func updateItem(_ item: StockItem, data: [String: Any]){
-        guard let id = item.id else { return }
-        var _data = data // copy data ke mutable var data
-        _data["updatedAt"] = FieldValue.serverTimestamp() // inject data
-        db.document(id).updateData(_data) // invoke update data dan passing ke _data
+        guard let id = item.id else { return } // Get ID dari Item yang diubah
+        var _data = data // Copy data ke mutable var data
+        _data["updatedAt"] = FieldValue.serverTimestamp() // Simpan Modifikasi Data Item ke serverTimestamp
+        db.document(id).updateData(_data) // Perbarui Data Item Tersebut di Database Server
     }
     
-    // fungsi delete data
+    // Fungsi Delete Item
     func onDelete(items: [StockItem], indexset: IndexSet) {
-        
-        // fungsi for untuk delete berdasarkan index-nya
+        // Delete berdasarkan ID-nya (Di cari melalui Index didalam IndexSet)
         for index in indexset {
-            guard let id = items[index].id else{ continue }
-            db.document(id).delete() // passing delete item berdasarkan id nya
-            
+            guard let id = items[index].id else{ continue } // Get ID dari Item by Index Position
+            db.document(id).delete() // Hapus Data Item dari Database Server berdasarkan ID-nya
         }
     }
     
-    // fungsi untuk menghilangkan jumping sort ketika sedang mengedit nama item
+    // Fungsi untuk menghilangkan jumping sort ketika sedang mengedit nama item
     func onEditingItemNameChanged(item: StockItem, isEditing: Bool){
-        
-        // ketika sedang mengedit nama item, jangan langsung di store ke dalam database
-        if !isEditing {
+        if !isEditing { // Ketika sudah selesai mengedit, simpan nama Item atau tidak ada yang tersimpan
             if item.name != editedName {
-                updateItem(item, data: ["name": editedName]) // invoke edit item ke dalam edited name
+                updateItem(item, data: ["name": editedName]) // Perbarui Data Item Tersebut di Database Server
             }
-            editedName = ""
-        } else {
-            editedName = item.name // ketika user fokus (mengedit) maka nama akan di simpan
+            editedName = "" // Tidak ada data baru yang disimpan
+        } else { // Ketika sedang mengedit, maka biarkan (jangan simpan ke Database Server)
+            editedName = item.name
         }
     }
 }
