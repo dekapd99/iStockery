@@ -7,15 +7,14 @@ Aplikasi iStockery adalah aplikasi stok inventory berbasis iOS yang dibuat mengg
 ### Build With:
 
 * [Swift](https://www.swift.org/documentation/)
+* [SwiftUI](https://developer.apple.com/documentation/swiftui/)
 * [Xcode](https://developer.apple.com/xcode/)
 * [Firebase / Firestore](https://firebase.google.com/)
 
-
 ### Requirements (How to Configure)
-* [Java 11] (https://chamikakasun.medium.com/how-to-manage-multiple-java-version-in-macos-e5421345f6d0)
-* [Node 8] (https://formulae.brew.sh/formula/node#default)
-* [Firebase CLI] (https://firebase.google.com/docs/emulator-suite/install_and_configure)
-
+* [Java 11](https://chamikakasun.medium.com/how-to-manage-multiple-java-version-in-macos-e5421345f6d0)
+* [Node 8](https://formulae.brew.sh/formula/node#default)
+* [Firebase CLI](https://firebase.google.com/docs/cli?authuser=0#mac-linux-npm)
 
 <!-- How to Install -->
 ## Installation
@@ -33,12 +32,11 @@ git clone https://github.com/dekapd99/iStockery.git
 6. Setelah itu, Download Config File yang diberikan oleh Firebase dan klik Next. Setelah itu, Copy Dependencies / Package URL yang diberikan.
 7. Buka Xcode, klik General ubah dan sesuaikan nama Bundle Identifier seperti di Project Firebase.
 8. Klik File > Add Packages. Paste URL Dependencies / Package pada kolom Search. Ubah Depedency Rule menjadi Branch - master dan klik Add Package.
-9. Drag & Drop Config File yang diberikan oleh Firebase ke dalam Project Navigation. 
-10. Ikuti installasi step pada halaman [ini] (https://firebase.google.com/docs/cli?authuser=0#mac-linux-npm). Salah satunya GoogleService-Info.plist.
-11. Lakukan Login dengan Firebase, Inisialisasi (https://firebase.google.com/docs/emulator-suite/install_and_configure?hl=en&authuser=0), Setting Ports, dan Cek Project List yang ada
+9. Drag & Drop Config File (GoogleService-Info.plist) yang diberikan oleh Firebase ke dalam Project Navigation. 
+10. Ikuti installasi secara Manual melalui Website [Firebase](https://firebase.google.com/docs/cli?authuser=0#mac-linux-npm) atau Firebase CLI via [Homebrew](https://formulae.brew.sh/formula/firebase-cli).
+11. Lakukan Login dengan Firebase, Inisialisasi Emulators (Pastikan menggunakan Firestore Emulators), Setting Ports, dan Cek Project List yang ada
 ```bash
 firebase login
-firebase init
 firebase init emulators
 firebase projects:list
 ```
@@ -58,6 +56,7 @@ firebase emulators:start
 14. Buka halaman baru di Browser, Copy & Paste URL Localhost
 15. Buat Scheme Database sederhana: Klik Start Collection, Collection ID = inventories.
 16. Akan ada 4 fields, yaitu:
+* Document ID: Biarkan Saja
 * (name, String, "") -> valuenya boleh diisi boleh tidak
 * (quantity, Number, "1") -> default valuenya dibuat jadi 1
 * (createdAt, Timestamp, "") -> valuenya diamkan saja karena akan autofill
