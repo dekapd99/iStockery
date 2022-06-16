@@ -1,8 +1,28 @@
 # iStockery
 
 <!-- ABOUT THE PROJECT -->
-## About
+<p align="center">
+  <a href="#" target="_blank"><img src="iStockery.png" width="200"></a>
+</p>
+
 Aplikasi iStockery adalah aplikasi stok inventory berbasis iOS yang dibuat menggunakan Firebase (Firestore) secara Local dengan fitur CRUD dan Sorting.
+
+## Preview
+<p align="center">
+    <a href="#" target="_blank"><img src="1.png" width="auto"></a>
+</p>
+
+<!-- ABOUT THE FILE & FOLDER STRUCTURE -->
+## Folder & File Structure
+Berikut struktur file dan folder pada iStockery:
+
+    .
+    ├── iStockeryApp.swift          # Root Project: Konfirgurasi Firebase Firestore
+    ├── StockItem.swift             # Deklarasi Attribute dari Firestore Collection & Dari Aplikasi
+    ├── ContentView.swift           # Tampilan Beranda Aplikasi
+    ├── SortType.swift              # Berisikan Data Attribute dari Collection Firestore yang digunakan
+    ├── info
+    └── StockListViewModel.swift    # Berisikan Fungsi CRUD
 
 ### Build With:
 
