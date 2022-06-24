@@ -7,7 +7,7 @@
 
 Aplikasi iStockery adalah aplikasi stok inventory berbasis iOS yang dibuat menggunakan Firebase (Firestore) secara Local dengan fitur CRUD dan Sorting.
 
-## Preview
+### Preview
 <p align="center">
     <a href="#" target="_blank"><img src="1.png" width="auto"></a>
 </p>
@@ -24,7 +24,7 @@ Berikut struktur file dan folder pada iStockery:
     ├── info
     └── StockListViewModel.swift    # Berisikan Fungsi CRUD
 
-### Build With:
+## Build With:
 
 * [Swift](https://www.swift.org/documentation/)
 * [SwiftUI](https://developer.apple.com/documentation/swiftui/)
