@@ -24,6 +24,11 @@ Berikut struktur file dan folder pada iStockery:
     ├── info
     └── StockListViewModel.swift    # Berisikan Fungsi CRUD
 
+## Features:
+
+* CRUD -> Produk
+* Sorting
+
 ## Build With:
 
 * [Swift](https://www.swift.org/documentation/)
