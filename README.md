@@ -1,10 +1,9 @@
-# iStockery
-
 <!-- ABOUT THE PROJECT -->
 <p align="center">
   <a href="#" target="_blank"><img src="iStockery.png" width="200"></a>
 </p>
 
+# iStockery
 Aplikasi iStockery adalah aplikasi stok inventory berbasis iOS yang dibuat menggunakan Firebase (Firestore) secara Local dengan fitur CRUD dan Sorting.
 
 ### Preview
